@@ -1,8 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Fetch initial data when the page loads
-    predictStockPrices();
-});
-
 function predictStockPrices() {
     const startDate = document.getElementById('start-date').value;
 
@@ -13,6 +8,21 @@ function predictStockPrices() {
             const actualPrices = data.actualPrices;
             const predictedPrices = data.predictedPrices;
 
+            // Calculate Mean Absolute Error (MAE)
+            let totalAbsoluteError = 0;
+            for (let i = 0; i < actualPrices.length; i++) {
+                totalAbsoluteError += Math.abs(predictedPrices[i] - actualPrices[i]);
+            }
+            const mae = totalAbsoluteError / actualPrices.length;
+
+            // Display accuracy metric on the webpage
+            if (!isNaN(mae)) {
+                document.getElementById('accuracystat').innerText = `Mean Absolute Error (MAE): ${mae.toFixed(2)}`;
+            } else {
+                document.getElementById('accuracystat').innerText = 'Unable to calculate accuracy.';
+            }
+
+            // Create a chart using Chart.js
             const ctx = document.getElementById('stockChart').getContext('2d');
             new Chart(ctx, {
                 type: 'line',
@@ -48,5 +58,8 @@ function predictStockPrices() {
                     }
                 }
             });
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
 }
