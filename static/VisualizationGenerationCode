@@ -1,0 +1,31 @@
+def generate_visualizations():
+    # Generate a histogram for closing prices
+    plt.figure(figsize=(8, 6))
+    plt.hist(data['Close'], bins=30, color='blue', alpha=0.7)
+    plt.xlabel('Closing Prices')
+    plt.ylabel('Frequency')
+    plt.title('Closing Prices Histogram')
+    plt.savefig('static/closing_prices_histogram.png')
+    plt.close()
+
+    # Generate a scatter plot for High vs Low prices
+    plt.figure(figsize=(8, 6))
+    plt.scatter(data['High'], data['Low'], color='green', alpha=0.7)
+    plt.xlabel('High Prices')
+    plt.ylabel('Low Prices')
+    plt.title('High vs Low Prices Scatter Plot')
+    plt.savefig('static/high_vs_low_scatter.png')
+    plt.close()
+
+    # Generate a confusion matrix
+    predictions = model.predict(X)
+    conf_matrix = confusion_matrix(y, predictions.round())
+
+    # Plot the confusion matrix using Seaborn
+    plt.figure(figsize=(6, 6))
+    sns.heatmap(conf_matrix, annot=True, fmt='g', cmap='Blues')
+    plt.xlabel('Predicted Labels')
+    plt.ylabel('Actual Labels')
+    plt.title('Confusion Matrix')
+    plt.savefig('static/confusion_matrix.png')
+    plt.close()

@@ -1,15 +1,12 @@
 # Import necessary libraries and modules
 from flask import Flask, request, jsonify, render_template
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error
-from sklearn.metrics import confusion_matrix
 import pandas as pd
 import datetime
-import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-# Load your AAPL data (assuming it's in a CSV file named 'AAPL.csv')
+# Load your AAPL data (assuming it's in a CSV file named 'aapl_data.csv')
 data = pd.read_csv('AAPL.csv')
 X = data[['Open', 'High', 'Low', 'Volume']]
 y = data['Close']
@@ -40,43 +37,11 @@ def predict():
         # Predict next 14 days
         predictions = model.predict(input_features)
 
-        # Calculate Mean Absolute Error (MAE)
-        mae = mean_absolute_error(filtered_data['Close'], predictions)
-
-        # Generate histogram, scatter plot, and confusion matrix
-        plt.hist(filtered_data['Close'], bins=10)
-        plt.xlabel('Closing Prices')
-        plt.ylabel('Frequency')
-        plt.title('Closing Prices Histogram')
-        plt.savefig('static/closing_prices_histogram.png')
-        plt.close()
-
-        plt.scatter(filtered_data['High'], filtered_data['Low'])
-        plt.xlabel('High Prices')
-        plt.ylabel('Low Prices')
-        plt.title('High vs Low Scatter Plot')
-        plt.savefig('static/high_vs_low_scatter.png')
-        plt.close()
-
-        actual_labels = filtered_data['Close'].apply(lambda x: 1 if x > filtered_data['Close'].mean() else 0)
-        predicted_labels = predictions > predictions.mean()
-        cm = confusion_matrix(actual_labels, predicted_labels)
-        plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
-        plt.title('Confusion Matrix')
-        plt.colorbar()
-        plt.xlabel('Predicted Labels')
-        plt.ylabel('True Labels')
-        plt.xticks([0, 1], ['Low', 'High'])
-        plt.yticks([0, 1], ['Low', 'High'])
-        plt.savefig('static/confusion_matrix.png')
-        plt.close()
-
         # Prepare response JSON
         response = {
             'labels': filtered_data['Date'].tolist(),
             'actualPrices': filtered_data['Close'].tolist(),
-            'predictedPrices': predictions.tolist(),
-            'mae': mae
+            'predictedPrices': predictions.tolist()
         }
         return jsonify(response)
     except Exception as e:

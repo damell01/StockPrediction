@@ -5,20 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Price Prediction</title>
+    <title>AAPL Stock Price Prediction</title>
+    <link rel="stylesheet" href="/templates/style.css">
 </head>
 
-<body>
-    <h1>Stock Price Prediction</h1>
+<body onload='alert("Select a date between 11/7/2018 and 11/7/2023 and press predict. Then Scroll down and view the visualizations of the AAPL stock data")'style="max-width: 90vw; overflow: -moz-hidden-unscrollable;"> 
+    <div class="header" style="margin-left: 45%;
+     margin-top: 1vh;"> 
+    <h1>AAPL Stock Price Prediction</h1>
     <div id="accuracystat"></div>
     <label for="start-date">Select a Start Date:</label>
     <input type="date" id="start-date">
-    <button onclick="predictStockPrices()">Predict</button>
-    <canvas id="stockChart" style="width: 400px; height: 200px;"></canvas>
+
+    <button onclick="predictStockPrices()">Predict</button> </div>
+    <canvas id="stockChart" style="width: 120vh; height: 80vh;     margin-left: 25%;
+    margin-right: 50%; margin-top: 5vh;"></canvas>
 
 
-    <div id="statistics">
-        <h2>Statistics</h2>
+    <div id="statistics" style="margin-left: 25%;
+    margin-right: 50%; margin-top: 5vh;">
+        <h2 id="statistics" style="
+            display: flex;
+            position: absolute;
+            left: 102vh;
+        ">Statistics</h2>
        
         <img id="histogram" src="static/closing_prices_histogram.png" alt="Closing Prices Histogram">
         <img id="scatter" src="static/high_vs_low_scatter.png" alt="High vs Low Scatter Plot">

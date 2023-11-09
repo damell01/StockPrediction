@@ -8,22 +8,16 @@ function predictStockPrices() {
             const actualPrices = data.actualPrices;
             const predictedPrices = data.predictedPrices;
 
-            // Calculate Mean Absolute Error (MAE)
-            let totalAbsoluteError = 0;
-            for (let i = 0; i < actualPrices.length; i++) {
-                totalAbsoluteError += Math.abs(predictedPrices[i] - actualPrices[i]);
-            }
-            const mae = totalAbsoluteError / actualPrices.length;
+            // Calculate the height of the chart based on 15vh (15% of the viewport height)
+            const chartHeight = window.innerHeight * 0.95; // 15% of the viewport height
 
-            // Display accuracy metric on the webpage
-            if (!isNaN(mae)) {
-                document.getElementById('accuracystat').innerText = `Mean Absolute Error (MAE): ${mae.toFixed(2)}`;
-            } else {
-                document.getElementById('accuracystat').innerText = 'Unable to calculate accuracy.';
-            }
+            // Set the new canvas size (width of the page and fixed height of 15vh)
+            const canvas = document.getElementById('stockChart');
+            canvas.width = window.innerWidth;
+            canvas.height = chartHeight;
 
-            // Create a chart using Chart.js
-            const ctx = document.getElementById('stockChart').getContext('2d');
+            // Create a chart using Chart.js with the updated canvas size
+            const ctx = canvas.getContext('2d');
             new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -43,8 +37,7 @@ function predictStockPrices() {
                     }]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: false, // Disable automatic resizing of the chart
                     scales: {
                         x: {
                             type: 'time',
