@@ -4,6 +4,8 @@
 ## Overview
 
 Stock Price Predictor is a machine learning application that forecasts stock prices based on historical data. This project aims to empower investors with data-driven insights for making informed investment decisions.
+![image](https://github.com/damell01/StockPrediction/assets/58995862/96157fe8-ce2a-44bd-820a-c76358c9848a)
+
 
 ## Features
 
