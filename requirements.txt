@@ -24,6 +24,8 @@ defusedxml==0.7.1
 executing==2.0.1
 fastjsonschema==2.18.1
 Flask==2.3.3
+Flask==2.0.1
+pywin32==301; sys_platform == 'win32'
 Flask-Cors==4.0.0
 fonttools==4.44.0
 fqdn==1.5.1
