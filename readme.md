@@ -14,8 +14,15 @@ Stock Price Predictor is a machine learning application that forecasts stock pri
 
 2. **Data Exploration Visualizations:**
    - Histogram for closing prices distribution.
+   - ![image](https://github.com/damell01/StockPrediction/assets/58995862/ec9ee4ad-4831-45ba-baf5-52df93ce1046)
+
    - Scatter plot depicting high vs low prices.
+   - ![image](https://github.com/damell01/StockPrediction/assets/58995862/6f0d5e89-f936-4c72-90f5-cddfb8506efd)
+
+   - 
    - Confusion matrix evaluating model classification performance.
+     ![image](https://github.com/damell01/StockPrediction/assets/58995862/46ab4498-17e3-4190-9039-9fd6476737b5)
+
 
 3. **User-Friendly Web Interface:**
    - Intuitive web application for easy interaction.
