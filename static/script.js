@@ -7,6 +7,19 @@ function predictStockPrices() {
             const labels = data.labels;
             const actualPrices = data.actualPrices;
             const predictedPrices = data.predictedPrices;
+              // Calculate Mean Absolute Error (MAE)
+              let totalAbsoluteError = 0;
+              for (let i = 0; i < actualPrices.length; i++) {
+                  totalAbsoluteError += Math.abs(predictedPrices[i] - actualPrices[i]);
+              }
+              const mae = totalAbsoluteError / actualPrices.length;
+  
+              // Display accuracy metric on the webpage
+              if (!isNaN(mae)) {
+                  document.getElementById('accuracystat').innerText = `Mean Absolute Error (MAE): ${mae.toFixed(2)}`;
+              } else {
+                  document.getElementById('accuracystat').innerText = 'Unable to calculate accuracy.';
+              }
 
             // Calculate the height of the chart based on 15vh (15% of the viewport height)
             const chartHeight = window.innerHeight * 0.95; // 15% of the viewport height
