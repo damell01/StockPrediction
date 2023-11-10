@@ -6,7 +6,7 @@ import datetime
 
 app = Flask(__name__)
 
-# Load your AAPL data (assuming it's in a CSV file named 'aapl_data.csv')
+# Load your AAPL data 
 data = pd.read_csv('AAPL.csv')
 X = data[['Open', 'High', 'Low', 'Volume']]
 y = data['Close']
